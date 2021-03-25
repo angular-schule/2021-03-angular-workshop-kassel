@@ -1,3 +1,7 @@
-{{ books }}
+<!-- {{ books }} -->
 
-Anzahl der Bücher: X
+<br-book [book]="books[0]"></br-book>
+<br-book [book]="books[1]"></br-book>
+<br-book [book]="books[2]"></br-book>
+
+Anzahl der Bücher: {{ books?.length }}

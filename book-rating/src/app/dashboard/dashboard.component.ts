@@ -13,8 +13,9 @@ export class DashboardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
     this.books = [{
-      isbn: '000',
+      isbn: '001',
       title: 'Angular',
       description: 'test',
       rating: 5
