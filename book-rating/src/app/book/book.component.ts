@@ -8,6 +8,8 @@ import { Book } from '../shared/book';
 })
 export class BookComponent {
 
+  bgLight = 'bg-light';
+
   @Input()
   book: Book;
 }
