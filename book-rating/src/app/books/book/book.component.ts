@@ -12,4 +12,8 @@ export class BookComponent {
 
   @Input()
   book: Book;
+
+  get stars(): undefined[] {
+    return new Array(this.book.rating);
+  }
 }
