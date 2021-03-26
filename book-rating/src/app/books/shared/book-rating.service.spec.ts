@@ -46,4 +46,10 @@ describe('BookRatingService', () => {
     const ratedBook2 = service.rateDown(book);
     expect(ratedBook2).not.toBe(book);
   });
+
+  // // 😱😰😥
+  // it('100% coverage!!!', () => {
+  //   service.rateUp(book);
+  //   service.rateDown(book);
+  // });
 });
