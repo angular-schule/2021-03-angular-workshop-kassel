@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { Book } from '../shared/book';
 import { BookRatingService } from '../shared/book-rating.service';
 
@@ -12,7 +13,7 @@ export class DashboardComponent implements OnInit {
   books: Book[];
 
   constructor(private br: BookRatingService) {
-
+    const apiUrl = environment.apiUrl;
   }
 
   ngOnInit(): void {
