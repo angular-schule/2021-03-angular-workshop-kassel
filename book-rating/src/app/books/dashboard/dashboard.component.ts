@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Book } from '../shared/book';
 import { BookRatingService } from '../shared/book-rating.service';
@@ -6,7 +6,8 @@ import { BookRatingService } from '../shared/book-rating.service';
 @Component({
   selector: 'br-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush // fieser Bug bei Ajax
 })
 export class DashboardComponent implements OnInit {
 
@@ -56,6 +57,10 @@ export class DashboardComponent implements OnInit {
     this.books = this.books
       .map(b => b.isbn === ratedBook.isbn ? ratedBook : b)
       .sort((a, b) => b.rating - a.rating);
+  }
+
+  addBook(newBook: Book): void {
+    this.books = [...this.books, newBook];
   }
 }
 
