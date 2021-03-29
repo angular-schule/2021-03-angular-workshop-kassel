@@ -3,7 +3,7 @@
     <img src="https://api.angular.schule/avatar/{{book.rating}}" class="float-right img-thumbnail">
 
     <div class="card-title">
-      <h2>{{book.title}}
+      <h2>{{book.title}} ({{ book.price | currency:'EUR':'symbol':'1.2-2' }})
         <span class="badge badge-secondary">
           <ng-container *ngFor="let s of stars" >
             ⭐️

@@ -21,17 +21,20 @@ export class DashboardComponent implements OnInit {
       isbn: '001',
       title: 'Angular',
       description: 'test',
-      rating: 5
+      rating: 5,
+      price: 39.50
     }, {
       isbn: '111',
       title: 'React',
       description: 'komisches Buch',
-      rating: 3
+      rating: 3,
+      price: 10
     }, {
       isbn: '222',
       title: 'jQuery',
       description: 'neee!!!!',
-      rating: 1
+      rating: 1,
+      price: 2.22
     }];
   }
 

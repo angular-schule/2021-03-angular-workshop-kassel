@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { BookComponent } from '../book/book.component';
 import { Book } from '../shared/book';
 import { BookRatingService } from '../shared/book-rating.service';
 
@@ -15,7 +16,10 @@ describe('DashboardComponent', () => {
     };
 
     await TestBed.configureTestingModule({
-      declarations: [ DashboardComponent ],
+      declarations: [
+        DashboardComponent,
+        BookComponent // --> Integration Test
+      ],
       providers: [{
         provide: BookRatingService,
         useValue: bookRatingMock
