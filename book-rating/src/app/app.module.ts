@@ -4,7 +4,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BooksModule } from './books/books.module';
 import { ChangeRequestInterceptor } from './books/shared/change-request-interceptor';
 import { ChangeResponseInterceptor } from './books/shared/change-response-interceptor';
 
@@ -15,7 +14,7 @@ import { ChangeResponseInterceptor } from './books/shared/change-response-interc
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BooksModule,
+    // BooksModule,
     HttpClientModule
   ],
   providers: [
