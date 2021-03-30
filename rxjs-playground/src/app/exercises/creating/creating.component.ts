@@ -31,8 +31,15 @@ export class CreatingComponent implements OnInit {
     };
 
     // 2. Observable
-    of('😎', '🤪', '👽').subscribe(observer);
+    const observable$ = new Observable(subscriber => {
+      subscriber.next('🤩');
+      setTimeout(() => subscriber.next('yay!'), 2000);
+      setTimeout(() => subscriber.complete(), 3000);
+    });
 
+    // 3. Subscription
+    const subscription = observable$.subscribe(observer);
+    setTimeout(() => subscription.unsubscribe(), 4000);
 
 
     /******************************/
