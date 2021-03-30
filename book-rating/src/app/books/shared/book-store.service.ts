@@ -18,4 +18,8 @@ export class BookStoreService {
   getSingle(isbn: string): Observable<Book> {
     return this.http.get<Book>('https://api.angular.schule/books/' + isbn);
   }
+
+  create(book: Book): Observable<Book> {
+    return this.http.post<Book>('https://api.angular.schule/books/', book);
+  }
 }

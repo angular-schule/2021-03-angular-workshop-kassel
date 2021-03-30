@@ -42,7 +42,9 @@ export class DashboardComponent implements OnInit {
   }
 
   addBook(newBook: Book): void {
-    this.books = [...this.books, newBook];
+    this.bs.create(newBook).subscribe(() => {
+      this.books = [...this.books, newBook];
+    });
   }
 }
 
