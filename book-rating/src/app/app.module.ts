@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BooksModule } from './books/books.module';
 import { ChangeRequestInterceptor } from './books/shared/change-request-interceptor';
+import { ChangeResponseInterceptor } from './books/shared/change-response-interceptor';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ChangeRequestInterceptor } from './books/shared/change-request-intercep
     HttpClientModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: ChangeRequestInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: ChangeRequestInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ChangeResponseInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
