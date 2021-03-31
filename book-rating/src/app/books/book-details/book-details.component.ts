@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map, mergeMap, tap } from 'rxjs/operators';
+import { concatMap, map, mergeMap, tap } from 'rxjs/operators';
 import { Book } from '../shared/book';
 import { BookStoreService } from '../shared/book-store.service';
 
@@ -14,8 +14,7 @@ export class BookDetailsComponent {
 
   book$ = this.router.paramMap.pipe(
     map(paramMap => paramMap.get('isbn')),
-    mergeMap(isbn => this.bs.getSingle(isbn)),
-    tap(x => { debugger })
+    concatMap(isbn => this.bs.getSingle(isbn)),
   );
 
   constructor(
