@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject, ReplaySubject } from 'rxjs';
-import { scan, reduce } from 'rxjs/operators';
+import { scan, reduce, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'rxw-game-score',
@@ -23,15 +23,14 @@ export class GameScoreComponent implements OnInit {
 
     /******************************/
 
-    // 1. currentScore
     this.score$.pipe(
+      scan((acc, item) => acc + item, 0)
+      // tap(x => this.isLoading = true)
+    ).subscribe(score => this.currentScore = score);
 
-    );
-
-    // 2.finalScore
     this.score$.pipe(
-
-    );
+      reduce((acc, item) => acc + item, 0)
+    ).subscribe(score => this.finalScore = score);
 
 
     /******************************/
