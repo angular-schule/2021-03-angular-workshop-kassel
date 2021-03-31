@@ -1,8 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
 import { environment } from 'src/environments/environment';
 import { Book } from '../shared/book';
 import { BookRatingService } from '../shared/book-rating.service';
 import { BookStoreService } from '../shared/book-store.service';
+import { selectBooks, selectBooksLoading } from '../store/book.selectors';
 
 @Component({
   selector: 'br-dashboard',
@@ -12,39 +14,39 @@ import { BookStoreService } from '../shared/book-store.service';
 })
 export class DashboardComponent implements OnInit {
 
-  books: Book[] = [];
+  books$ = this.store.pipe(select(selectBooks));
+  loading$ = this.store.pipe(select(selectBooksLoading));
 
-  constructor(private br: BookRatingService, private bs: BookStoreService) {
+  constructor(private store: Store) {
   }
 
   ngOnInit(): void {
-    this.bs.getAll().subscribe(books => this.books = books);
   }
 
   doRateUp(book: Book): void {
-    const ratedBook = this.br.rateUp(book);
-    // const ratedBook = {
-    //   ...book,
-    //   rating: book.rating < 5 ? book.rating + 1 : 5
-    // };
-    this.updateAndSortBooks(ratedBook);
+    // const ratedBook = this.br.rateUp(book);
+    // // const ratedBook = {
+    // //   ...book,
+    // //   rating: book.rating < 5 ? book.rating + 1 : 5
+    // // };
+    // this.updateAndSortBooks(ratedBook);
   }
 
   doRateDown(book: Book): void {
-    const ratedBook = this.br.rateDown(book);
-    this.updateAndSortBooks(ratedBook);
+    // const ratedBook = this.br.rateDown(book);
+    // this.updateAndSortBooks(ratedBook);
   }
 
   updateAndSortBooks(ratedBook: Book): void {
-    this.books = this.books
-      .map(b => b.isbn === ratedBook.isbn ? ratedBook : b)
-      .sort((a, b) => b.rating - a.rating);
+    // this.books = this.books
+    //   .map(b => b.isbn === ratedBook.isbn ? ratedBook : b)
+    //   .sort((a, b) => b.rating - a.rating);
   }
 
   addBook(newBook: Book): void {
-    this.bs.create(newBook).subscribe(() => {
-      this.books = [...this.books, newBook];
-    });
+    // this.bs.create(newBook).subscribe(() => {
+    //   this.books = [...this.books, newBook];
+    // });
   }
 }
 
