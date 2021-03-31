@@ -14,17 +14,14 @@ export class MulticastComponent implements OnInit {
   listeners = [];
   logStream$ = new ReplaySubject();
 
-  measureValues$: Observable<number>; // später: Subject<number>
+  measureValues$ = new ReplaySubject<number>(); // später: Subject<number>
 
   constructor(private mvs: MeasureValuesService, private es: ExerciseService) { }
 
   ngOnInit() {
     /******************************/
 
-    this.measureValues$ = this.mvs.getValues().pipe(
-      // share()
-      shareReplay(1)
-    );
+    this.mvs.getValues().subscribe(n => this.measureValues$.next(n));
 
     /******************************/
   }

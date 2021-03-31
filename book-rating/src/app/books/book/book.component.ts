@@ -23,11 +23,11 @@ export class BookComponent {
   }
 
   doRateDown(): void {
-    this.rateDown.emit(this.book);
+    this.rateDown.next(this.book);
   }
 
   doRateUp(): void {
-    this.rateUp.emit(this.book);
+    this.rateUp.next(this.book);
   }
 
   log() {
