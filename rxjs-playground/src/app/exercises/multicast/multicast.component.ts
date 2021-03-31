@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject, BehaviorSubject, ReplaySubject, Observable } from 'rxjs';
-import { share } from 'rxjs/operators';
+import { share, shareReplay } from 'rxjs/operators';
 
 import { MeasureValuesService } from './measure-values.service';
 import { ExerciseService } from '../exercise.service';
@@ -22,7 +22,8 @@ export class MulticastComponent implements OnInit {
     /******************************/
 
     this.measureValues$ = this.mvs.getValues().pipe(
-      share()
+      // share()
+      shareReplay(1)
     );
 
     /******************************/
