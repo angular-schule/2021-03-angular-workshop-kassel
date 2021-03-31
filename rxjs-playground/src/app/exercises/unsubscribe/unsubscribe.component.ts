@@ -11,6 +11,7 @@ export class UnsubscribeComponent implements OnInit, OnDestroy {
   logStream$ = new ReplaySubject<string | number>();
 
   destroyed = false;
+  destroy$ = new Subject();
 
   /**
    * Öffne die Browser-Console: Dort siehst Du den Output eines Observables, das jede Sekunde einen Wert generiert.
@@ -26,7 +27,8 @@ export class UnsubscribeComponent implements OnInit, OnDestroy {
     const interval$ = timer(0, 1000);
 
     interval$.pipe(
-      takeWhile(() => !this.destroyed)
+      // takeWhile(() => !this.destroyed)
+      takeUntil(this.destroy$)
     ).subscribe({
       next: e => this.log(e),
       error: err => this.log('❌ ERROR: ' + err),
@@ -37,6 +39,10 @@ export class UnsubscribeComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.logStream$.next('DESTROY');
     this.destroyed = true;
+
+    this.destroy$.next();
+    // nicht notwendig:
+    // this.destroy$.complete();
   }
 
 
