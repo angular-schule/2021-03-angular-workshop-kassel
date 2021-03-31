@@ -1,5 +1,12 @@
-<h2>{{ book$ | async | json }}</h2>
+<h2>{{ (book$ | async)?.title }}
+  {{ (book$ | async)?.price }}
+</h2>
 
+<p *ngIf="showDetails">{{ (book$ | async)?.description }}</p>
+
+<button (click)="showDetails = !showDetails">
+  Toggle Details
+</button>
 
 <a routerLink="/books/9783960091417">
   Gehe zu 9783960091417
