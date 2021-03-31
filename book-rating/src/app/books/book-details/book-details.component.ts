@@ -16,7 +16,7 @@ export class BookDetailsComponent {
   book$ = this.router.paramMap.pipe(
     map(paramMap => paramMap.get('isbn')),
     switchMap(isbn => this.bs.getSingle(isbn)),
-    shareReplay(1)
+    // shareReplay(1)
   );
 
   constructor(
