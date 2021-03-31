@@ -21,7 +21,7 @@ export class MulticastComponent implements OnInit {
   ngOnInit() {
     /******************************/
 
-    this.mvs.getValues().subscribe(n => this.measureValues$.next(n));
+    this.mvs.getValues().subscribe(this.measureValues$);
 
     /******************************/
   }
