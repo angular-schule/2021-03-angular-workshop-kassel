@@ -33,13 +33,22 @@ export class CreatingComponent implements OnInit {
     // 2. Observable
     const observable$ = new Observable(subscriber => {
       subscriber.next('🤩');
-      setTimeout(() => subscriber.next('yay!'), 2000);
+      const x = setTimeout(() => { subscriber.next('yay!'); console.log('Das Licht leuchtet!'); }, 2000);
+      const y = setTimeout(() => { subscriber.next('blubb'); console.log('Das Licht leuchtet!!!!!'); }, 2100);
       setTimeout(() => subscriber.complete(), 3000);
+
+      return () => {
+        console.log('Hier wird audgeräumt!');
+        clearTimeout(x);
+        clearTimeout(y);
+      }
     });
 
     // 3. Subscription
     const subscription = observable$.subscribe(observer);
-    setTimeout(() => subscription.unsubscribe(), 4000);
+    const subscription2 = observable$.subscribe(observer);
+
+    setTimeout(() => subscription.unsubscribe(), 1000);
 
 
     /******************************/
