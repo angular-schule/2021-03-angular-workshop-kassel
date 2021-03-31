@@ -18,8 +18,8 @@ import { ChangeResponseInterceptor } from './books/shared/change-response-interc
     HttpClientModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: ChangeRequestInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ChangeResponseInterceptor, multi: true }
+    // { provide: HTTP_INTERCEPTORS, useClass: ChangeRequestInterceptor, multi: true },
+    // { provide: HTTP_INTERCEPTORS, useClass: ChangeResponseInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
