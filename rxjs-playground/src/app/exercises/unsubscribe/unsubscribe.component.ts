@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subject, ReplaySubject, timer, Subscription } from 'rxjs';
-import { takeWhile, takeUntil, take } from 'rxjs/operators';
+import { takeWhile, takeUntil, take, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'rxw-unsubscribe',
@@ -8,7 +8,11 @@ import { takeWhile, takeUntil, take } from 'rxjs/operators';
 })
 export class UnsubscribeComponent implements OnInit, OnDestroy {
 
-  logStream$ = new ReplaySubject<string | number>();
+  // logStream$ = new ReplaySubject<string | number>();
+
+  zahl$ = timer(0, 1000).pipe(
+    tap(console.log)
+  );
 
   destroyed = false;
   destroy$ = new Subject();
@@ -24,24 +28,24 @@ export class UnsubscribeComponent implements OnInit, OnDestroy {
    * Es gibt noch weitere Lösungen, das Problem zu lösen...
    */
   ngOnInit() {
-    const interval$ = timer(0, 1000);
+    // const interval$ = timer(0, 1000);
 
-    interval$.pipe(
-      // takeWhile(() => !this.destroyed)
-      // takeUntil(this.destroy$)
-      take(1)
-    ).subscribe({
-      next: e => this.log(e),
-      error: err => this.log('❌ ERROR: ' + err),
-      complete: () => this.log('✅ COMPLETE')
-    });
+    // interval$.pipe(
+    //   // takeWhile(() => !this.destroyed)
+    //   // takeUntil(this.destroy$)
+    //   // take(1)
+    // ).subscribe({
+    //   next: e => this.log(e),
+    //   error: err => this.log('❌ ERROR: ' + err),
+    //   complete: () => this.log('✅ COMPLETE')
+    // });
   }
 
   ngOnDestroy() {
-    this.logStream$.next('DESTROY');
-    this.destroyed = true;
+    // this.logStream$.next('DESTROY');
+    // this.destroyed = true;
 
-    this.destroy$.next();
+    // this.destroy$.next();
     // nicht notwendig:
     // this.destroy$.complete();
   }
@@ -49,6 +53,6 @@ export class UnsubscribeComponent implements OnInit, OnDestroy {
 
   log(msg: string | number) {
     console.log(msg);
-    this.logStream$.next(msg);
+   //  this.logStream$.next(msg);
   }
 }
