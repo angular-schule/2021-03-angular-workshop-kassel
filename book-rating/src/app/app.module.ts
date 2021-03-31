@@ -6,6 +6,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChangeRequestInterceptor } from './books/shared/change-request-interceptor';
 import { ChangeResponseInterceptor } from './books/shared/change-response-interceptor';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -15,7 +19,10 @@ import { ChangeResponseInterceptor } from './books/shared/change-response-interc
     BrowserModule,
     AppRoutingModule,
     // BooksModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot({}, {}),
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [
     // { provide: HTTP_INTERCEPTORS, useClass: ChangeRequestInterceptor, multi: true },
