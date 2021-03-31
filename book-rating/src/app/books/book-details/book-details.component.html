@@ -1,8 +1,6 @@
 <ng-container *ngIf="book$ | async as book; else loading">
 
-  <h2>{{ book.title }}
-    {{ book.price }}
-  </h2>
+  <h2>{{ book.title }}</h2>
 
   <p *ngIf="showDetails">{{ book.description }}</p>
 
@@ -18,4 +16,9 @@
 
 <a routerLink="/books/9783960091417">
   Gehe zu 9783960091417
+</a>
+
+
+<a routerLink="/books/xxx">
+  Gehe zu XXX
 </a>
